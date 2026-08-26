@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鬼飞轮的资源分享站</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", sans-serif;
+        }
+        body {
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+            background-color: #f0f2f5;
+        }
+        /* 左侧菜单 */
+        .sidebar {
+            width: 280px;
+            background-color: #252b37;
+            color: white;
+            padding:20px 0;
+            overflow-y: auto;
+        }
+        .sidebar h2{
+            text-align:center;
+            margin-bottom:24px;
+            font-size:20px;
+        }
+        .item{
+            padding:14px 24px;
+            cursor:pointer;
+            transition: 0.25s;
+        }
+        .item:hover{
+            background-color:#374151;
+        }
+        .item.active{
+            background-color:#165DFF;
+        }
+        /* 右侧内容区 */
+        .main{
+            flex:1;
+            padding:30px;
+            overflow-y:auto;
+        }
+        .resource-card{
+            background:#fff;
+            padding:24px;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px #00000015;
+            max-width:700px;
+        }
+        .resource-card h3{
+            margin-bottom:16px;
+            font-size:22px;
+        }
+        .version-item{
+            padding:12px 10px;
+            border-bottom: 1px solid #eee;
+            cursor:pointer;
+            transition: 0.2s;
+        }
+        .version-item:hover{
+            background-color:#f3f4f6;
+        }
+        .hide{
+            display:none;
+        }
+        /* 弹窗遮罩 */
+        .modal-overlay{
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background:rgba(0,0,0,0.55);
+            display:none;
+            align-items:center;
+            justify-content:center;
+            z-index: 999;
+        }
+        .modal-box{
+            width: 640px;
+            max-height: 85vh;
+            background:#ffffff;
+            border-radius: 12px;
+            overflow-y:auto;
+        }
+        .modal-desc{
+            padding:24px;
+        }
+        .modal-desc h4{
+            font-size:18px;
+            margin-bottom:12px;
+        }
+        .modal-buttons{
+            padding:20px 24px;
+            border-top: 1px solid #eee;
+            display:flex;
+            gap:12px;
+            flex-wrap: wrap;
+        }
+        .btn{
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            color:white;
+            cursor:pointer;
+            font-size:13px;
+            text-decoration: none;
+        }
+        .btn-baidu{background-color:#2b78e4;}
+        .btn-lanzou{background-color:#ff7800;}
+        .btn-ali{background-color:#00b42a;}
+        .btn-mediafire{background-color:#1874CD;}
+        .btn-github{background-color:#24292f;}
+        .btn-onedrive{background-color:#0078d4;}
+        .btn-quark{background-color:#2663eb;}
+        .btn-xunlei{background-color:#56b64a;}
+        .btn-weiyun{background-color:#00a4ff;}
+        .btn-123{background-color:#ff4444;}
+        .btn-close{background-color:#888888;margin-left:auto;}
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>资源列表</h2>
+        <div class="item active" data-id="res1">我的世界</div>
+        <div class="item" data-id="res2">愤怒的小鸟</div>
+        <div class="item" data-id="res3">植物大战僵尸</div>
+    </div>
+    <div class="main">
+        <!--资源1-->
+        <div class="resource-content" id="res1">
+            <div class="resource-card">
+                <h3>我的世界</h3>
+                <div class="version-item" data-title="MCPE 0.1.0（reminecraftpe）"
+                     data-desc="Minecraft PE 0.1.0反编译版本"
+                     data-baidu="https://pan.baidu.com/s/1QLSQFHRgtHzoF0iRaCrhQQ"
+                     data-lanzou="https://guifeilun.lanzoub.com/iHYtz3q5ikwf"
+                     data-ali="https://www.aliyundrive.com/s/xxx"
+                     data-mediafire="https://www.mediafire.com/file/xxx"
+                     data-github="https://github.com/FLEXIY0/Remcpe"
+                     data-onedrive="https://1drv.ms/u/s!xxx"
+                     data-quark="https://pan.quark.cn/s/xxx"
+                     data-xunlei="https://pan.xunlei.com/s/xxx"
+                     data-weiyun="https://share.weiyun.com/xxx"
+                     data-123="https://www.123pan.com/s/xxx">
+                    MCPE 0.1.0
+                </div>
+                <div class="version-item" data-title="MCPE 0.6.1"
+                     data-desc="Minecraft PE 0.6.1源代码泄露版本，开启下界支持，暂时不支持无限世界"
+                     data-baidu="https://pan.baidu.com/s/1Lbt_EY9ZUtSau5Q_lG3CTw"
+                     data-lanzou="https://guifeilun.lanzoub.com/iHYtz3q5ikwf"
+                     data-ali="https://www.aliyundrive.com/s/xxx"
+                     data-mediafire="https://www.mediafire.com/file/xxx"
+                     data-github="https://github.com/JackTulli/Minecraft-PE-0.6.1-Win32-port"
+                     data-onedrive="https://1drv.ms/u/s!xxx"
+                     data-quark="https://pan.quark.cn/s/xxx"
+                     data-xunlei="https://pan.xunlei.com/s/xxx"
+                     data-weiyun="https://share.weiyun.com/xxx"
+                     data-123="https://www.123pan.com/s/xxx">
+                    MCPE 0.6.1
+                </div>
+                <div class="version-item" data-title="MCPE 0.8.1"
+                     data-desc="MCPE‑0.8.1社区移植源码编译版本。"
+                     data-baidu="https://pan.baidu.com/s/1_L-dv9G-UPvX5f8AzfXViw"
+                     data-lanzou="https://lanzou.com/xxx"
+                     data-ali="https://www.aliyundrive.com/s/xxx"
+                     data-mediafire="https://www.mediafire.com/file/xxx"
+                     data-github="https://github.com/oldminecraftcommunity/MCPE-0.8.1"
+                     data-onedrive="https://1drv.ms/u/s!xxx"
+                     data-quark="https://pan.quark.cn/s/xxx"
+                     data-xunlei="https://pan.xunlei.com/s/xxx"
+                     data-weiyun="https://share.weiyun.com/xxx"
+                     data-123="https://www.123pan.com/s/xxx">
+                    MCPE 0.8.1
+                </div>
+                <div class="version-item" data-title="Ninecraft（支持0.1~0.11.1）"
+                     data-desc="可直接在Windows电脑运行的MCPE启动器。"
+                     data-baidu="https://pan.baidu.com/s/1iRLX8uiu7L1nXMf-0qqQAQ"
+                     data-lanzou="https://lanzou.com/xxx"
+                     data-ali="https://www.aliyundrive.com/s/xxx"
+                     data-mediafire="https://www.mediafire.com/file/xxx"
+                     data-github="https://github.com/MCPI-Revival/Ninecraft"
+                     data-onedrive="https://1drv.ms/u/s!xxx"
+                     data-quark="https://pan.quark.cn/s/xxx"
+                     data-xunlei="https://pan.xunlei.com/s/xxx"
+                     data-weiyun="https://share.weiyun.com/xxx"
+                     data-123="https://www.123pan.com/s/xxx">
+                    Ninecraft
+                </div>
+                <div class="version-item" data-title="MCPE 0.15.0"
+                     data-desc="社区反编译版本。"
+                     data-baidu="https://pan.baidu.com/s/1YEZpYyEjZnq_fRS0iAcmUQ"
+                     data-lanzou="https://lanzou.com/xxx"
+                     data-ali="https://www.aliyundrive.com/s/xxx"
+                     data-mediafire="https://www.mediafire.com/file/xxx"
+                     data-onedrive="https://1drv.ms/u/s!xxx"
+                     data-quark="https://pan.quark.cn/s/xxx"
+                     data-xunlei="https://pan.xunlei.com/s/xxx"
+                     data-weiyun="https://share.weiyun.com/xxx"
+                     data-123="https://www.123pan.com/s/xxx">
+                    MCPE 0.15.0
+                </div>
+                <div class="version-item" data-title="MC原主机版"
+                     data-desc="源代码泄露版本。"
+                     data-baidu="https://pan.baidu.com/s/1rj6zkANK7NhFNlE04uAq5w"
+                     data-lanzou="https://lanzou.com/xxx"
+                     data-ali="https://www.aliyundrive.com/s/xxx"
+                     data-mediafire="https://www.mediafire.com/file/xxx"
+                     data-onedrive="https://1drv.ms/u/s!xxx"
+                     data-quark="https://pan.quark.cn/s/xxx"
+                     data-xunlei="https://pan.xunlei.com/s/xxx"
+                     data-weiyun="https://share.weiyun.com/xxx"
+                     data-123="https://www.123pan.com/s/xxx">
+                    MC原主机版
+                </div>
+                <div class="version-item" data-title="beta1.7.3 C++移植"
+                     data-desc="Beta1.7.3的C++移植版本，可在Windows运行。"
+                     data-baidu="https://pan.baidu.com/s/1RnYQUpdUA5RKyLTrVkICBg"
+                     data-lanzou="https://lanzou.com/xxx"
+                     data-ali="https://www.aliyundrive.com/s/xxx"
+                     data-mediafire="https://www.mediafire.com/file/xxx"
+                     data-github="https://github.com/xxx"
+                     data-onedrive="https://1drv.ms/u/s!xxx"
+                     data-quark="https://pan.quark.cn/s/xxx"
+                     data-xunlei="https://pan.xunlei.com/s/xxx"
+                     data-weiyun="https://share.weiyun.com/xxx"
+                     data-123="https://www.123pan.com/s/xxx">
+                    beta1.7.3 C++移植
+                </div>
+                <div class="version-item" data-title="网易ModPC开发版"
+                     data-desc="网易我的世界基岩版ModPC模组开发调试版本，用于模组开发测试,已经精简和调出资源包材质包选项。"
+                     data-baidu="https://pan.baidu.com/s/1enie3EEoRdj46MS8piR3wQ"
+                     data-lanzou="https://lanzou.com/xxx"
+                     data-ali="https://www.aliyundrive.com/s/xxx"
+                     data-mediafire="https://www.mediafire.com/file/xxx"
+                     data-github="https://github.com/xxx"
+                     data-onedrive="https://1drv.ms/u/s!xxx"
+                     data-quark="https://pan.quark.cn/s/xxx"
+                     data-xunlei="https://pan.xunlei.com/s/xxx"
+                     data-weiyun="https://share.weiyun.com/xxx"
+                     data-123="https://www.123pan.com/s/xxx">
+                    网易ModPC开发版
+                </div>
+                <div class="version-item" data-title="我的世界故事模式1"
+                     data-desc="Minecraft Story Mode第一季，完整1‑8章剧情冒险游戏。"
+                     data-baidu="https://pan.baidu.com/s/xxx"
+                     data-lanzou="https://lanzou.com/xxx"
+                     data-ali="https://www.aliyundrive.com/s/xxx"
+                     data-mediafire="https://www.mediafire.com/file/xxx"
+                     data-github="https://github.com/xxx"
+                     data-onedrive="https://1drv.ms/u/s!xxx"
+                     data-quark="https://pan.quark.cn/s/xxx"
+                     data-xunlei="https://pan.xunlei.com/s/xxx"
+                     data-weiyun="https://share.weiyun.com/xxx"
+                     data-123="https://www.123pan.com/s/xxx">
+                    我的世界故事模式1
+                </div>
+                <div class="version-item" data-title="我的世界故事模式2"
+                     data-desc="Minecraft Story Mode第二季，完整1‑5章续作剧情。"
+                     data-baidu="https://pan.baidu.com/s/xxx"
+                     data-lanzou="https://lanzou.com/xxx"
+                     data-ali="https://www.aliyundrive.com/s/xxx"
+                     data-mediafire="https://www.mediafire.com/file/xxx"
+                     data-github="https://github.com/xxx"
+                     data-onedrive="https://1drv.ms/u/s!xxx"
+                     data-quark="https://pan.quark.cn/s/xxx"
+                     data-xunlei="https://pan.xunlei.com/s/xxx"
+                     data-weiyun="https://share.weiyun.com/xxx"
+                     data-123="https://www.123pan.com/s/xxx">
+                    我的世界故事模式2
+                </div>
+                <!-- 新增条目结束 -->
+            </div>
+        </div>
+        <!--资源2-->
+        <div class="resource-content hide" id="res2">
+            <div class="resource-card">
+                <h3>愤怒的小鸟</h3>
+                <div class="version-item" data-title="愤怒的小鸟 原版PC移植"
+                     data-desc="原版愤怒的小鸟Windows移植安装包。"
+                     data-baidu="https://pan.baidu.com/s/xxx"
+                     data-lanzou="https://lanzou.com/xxx"
+                     data-ali="https://www.aliyundrive.com/s/xxx"
+                     data-mediafire="https://www.mediafire.com/file/xxx"
+                     data-github="https://github.com/xxx"
+                     data-onedrive="https://1drv.ms/u/s!xxx"
+                     data-quark="https://pan.quark.cn/s/xxx"
+                     data-xunlei="https://pan.xunlei.com/s/xxx"
+                     data-weiyun="https://share.weiyun.com/xxx"
+                     data-123="https://www.123pan.com/s/xxx">
+                    愤怒的小鸟 原版PC移植
+                </div>
+                <div class="version-item" data-title="愤怒的小鸟 季节版"
+                     data-desc="愤怒的小鸟季节怀旧版本。"
+                     data-baidu="https://pan.baidu.com/s/xxx"
+                     data-lanzou="https://lanzou.com/xxx"
+                     data-ali="https://www.aliyundrive.com/s/xxx"
+                     data-mediafire="https://www.mediafire.com/file/xxx"
+                     data-github="https://github.com/xxx"
+                     data-onedrive="https://1drv.ms/u/s!xxx"
+                     data-quark="https://pan.quark.cn/s/xxx"
+                     data-xunlei="https://pan.xunlei.com/s/xxx"
+                     data-weiyun="https://share.weiyun.com/xxx"
+                     data-123="https://www.123pan.com/s/xxx">
+                    愤怒的小鸟 季节版
+                </div>
+            </div>
+        </div>
+        <!--资源3-->
+        <div class="resource-content hide" id="res3">
+            <div class="resource-card">
+                <h3>植物大战僵尸</h3>
+                <div class="version-item" data-title="PVZ2‑PC‑PORT 4.5.2 V2"
+                     data-desc="植物大战僵尸2 PC移植4.5.2版本。"
+                     data-baidu="https://pan.baidu.com/s/xxx"
+                     data-lanzou="https://lanzou.com/xxx"
+                     data-ali="https://www.aliyundrive.com/s/xxx"
+                     data-mediafire="https://www.mediafire.com/file/xxx"
+                     data-github="https://github.com/xxx"
+                     data-onedrive="https://1drv.ms/u/s!xxx"
+                     data-quark="https://pan.quark.cn/s/xxx"
+                     data-xunlei="https://pan.xunlei.com/s/xxx"
+                     data-weiyun="https://share.weiyun.com/xxx"
+                     data-123="https://www.123pan.com/s/xxx">
+                    PVZ2‑PC‑PORT 4.5.2 V2
+                </div>
+                <div class="version-item" data-title="植物大战僵尸1 年度版"
+                     data-desc="PVZ1 年度纪念版，经典单机版本。"
+                     data-baidu="https://pan.baidu.com/s/xxx"
+                     data-lanzou="https://lanzou.com/xxx"
+                     data-ali="https://www.aliyundrive.com/s/xxx"
+                     data-mediafire="https://www.mediafire.com/file/xxx"
+                     data-github="https://github.com/xxx"
+                     data-onedrive="https://1drv.ms/u/s!xxx"
+                     data-quark="https://pan.quark.cn/s/xxx"
+                     data-xunlei="https://pan.xunlei.com/s/xxx"
+                     data-weiyun="https://share.weiyun.com/xxx"
+                     data-123="https://www.123pan.com/s/xxx">
+                    植物大战僵尸1 年度版
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--弹窗-->
+    <div class="modal-overlay" id="modal">
+        <div class="modal-box">
+            <div class="modal-desc">
+                <h4 id="modal-title"></h4>
+                <p id="modal-desc"></p>
+            </div>
+            <div class="modal-buttons">
+                <a class="btn btn-baidu" id="btn-baidu" target="_blank">百度网盘</a>
+                <a class="btn btn-lanzou" id="btn-lanzou" target="_blank">蓝奏云</a>
+                <a class="btn btn-ali" id="btn-ali" target="_blank">阿里云盘</a>
+                <a class="btn btn-mediafire" id="btn-mediafire" target="_blank">MediaFire</a>
+                <a class="btn btn-github" id="btn-github" target="_blank">GitHub</a>
+                <a class="btn btn-onedrive" id="btn-onedrive" target="_blank">OneDrive</a>
+                <a class="btn btn-quark" id="btn-quark" target="_blank">夸克网盘</a>
+                <a class="btn btn-xunlei" id="btn-xunlei" target="_blank">迅雷网盘</a>
+                <a class="btn btn-weiyun" id="btn-weiyun" target="_blank">腾讯微云</a>
+                <a class="btn btn-123" id="btn-123" target="_blank">123云盘</a>
+                <button class="btn btn-close" id="closeModal">关闭</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const items = document.querySelectorAll('.item');
+        const contents = document.querySelectorAll('.resource-content');
+        const modal = document.getElementById('modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDesc = document.getElementById('modal-desc');
+        const btnBaidu = document.getElementById('btn-baidu');
+        const btnLanzou = document.getElementById('btn-lanzou');
+        const btnAli = document.getElementById('btn-ali');
+        const btnMediafire = document.getElementById('btn-mediafire');
+        const btnGithub = document.getElementById('btn-github');
+        const btnOnedrive = document.getElementById('btn-onedrive');
+        const btnQuark = document.getElementById('btn-quark');
+        const btnXunlei = document.getElementById('btn-xunlei');
+        const btnWeiyun = document.getElementById('btn-weiyun');
+        const btn123 = document.getElementById('btn-123');
+        const closeModal = document.getElementById('closeModal');
+        //左侧切换
+        items.forEach(el=>{
+            el.onclick = function(){
+                items.forEach(i=>i.classList.remove('active'));
+                this.classList.add('active');
+                let targetId = this.dataset.id;
+                contents.forEach(c=>c.classList.add('hide'));
+                document.getElementById(targetId).classList.remove('hide');
+            }
+        })
+        //点击版本打开弹窗
+        document.querySelectorAll('.version-item').forEach(el=>{
+            el.onclick = function(){
+                modalTitle.innerText = this.dataset.title;
+                modalDesc.innerText = this.dataset.desc;
+                btnBaidu.href = this.dataset.baidu;
+                btnLanzou.href = this.dataset.lanzou;
+                btnAli.href = this.dataset.ali;
+                btnMediafire.href = this.dataset.mediafire;
+                btnGithub.href = this.dataset.github;
+                btnOnedrive.href = this.dataset.onedrive;
+                btnQuark.href = this.dataset.quark;
+                btnXunlei.href = this.dataset.xunlei;
+                btnWeiyun.href = this.dataset.weiyun;
+                btn123.href = this.dataset['123'];
+                modal.style.display = 'flex';
+            }
+        })
+        //关闭弹窗
+        closeModal.onclick = function(){
+            modal.style.display = 'none';
+        }
+        //点击遮罩关闭弹窗
+        modal.onclick = function(e){
+            if(e.target === modal){
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
